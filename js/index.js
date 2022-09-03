@@ -15,6 +15,3 @@ fetch('https://openapi.programming-hero.com/api/news/categories')
         }
     })
 
-
-// const ul = document.getElementById('catagory')
-// for(const catagory of )
