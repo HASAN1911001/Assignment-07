@@ -39,14 +39,14 @@ function newsD(news)
         newsDiv.classList.add('card');
 
         newsDiv.innerHTML = `
-            <div class="row g-0" style="height:300px;">
+            <div class="row g-0">
             <div class="col-md-4">
                 <img id="image" src="${news[n].thumbnail_url}" class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                 <h5 id ="title" class="card-title">${news[n].title}</h5>
-                <p id="text" class="card-text" style="white-space:nowrap;  overflow:hidden; text-overflow: ellipsis;">${news[n].details}</p>
+                <p id="text" class="card-text" style="height:100px; white-space:nowrap;  overflow:hidden; text-overflow: ellipsis;">${news[n].details}</p>
                 </div>
                 <div class="d-flex">
                     <div class="mr-auto p-2">
@@ -62,6 +62,11 @@ function newsD(news)
         `;
         newsContainer.appendChild(newsDiv);
     }
+
+//Displaying the number of news
+    const newsNumber = document.getElementById('news-container').childElementCount;
+    const number = document.getElementById('news-number');
+    number.innerText= `${newsNumber} news found in this category`;
 }
 
 function detailsNews(news_id)
@@ -81,6 +86,22 @@ function modal(news)
 
     const modalDetails = document.getElementById("modal-details");
     modalDetails.innerText = news.details;
+
+    const modalImage = document.getElementById("modal-image");
+    modalImage.setAttribute("src", news.thumbnail_url);
+
+    const authorImage = document.getElementById("author-image");
+    authorImage.setAttribute("src", news.author.img);
+
+    const authorName = document.getElementById("author-name");
+    authorName.innerText = news.author.name;
+
+
+    const view = document.getElementById("views");
+    view.innerText = `Views: ${news.total_view}`;
+
+
+
 }
 
 

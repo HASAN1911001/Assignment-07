@@ -9,17 +9,18 @@
   </head>
   <body>
     <header class="d-block">
-        <nav class="navbar navbar-dark bg-dark justify-content-between">
+        <nav class="navbar navbar-light bg-light justify-content-between">
             <a class="navbar-brand">News Hub</a>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                   <a class="nav-link active" href="#">News</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Blog</a>
+                  <a class="nav-link" href="blog.html">Blog</a>
                 </li>
               </ul>
         </nav>
+        <hr>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
             <div class="collapse navbar-collapse" id="navbarText">
@@ -31,13 +32,15 @@
     </header>
 
     <main>
-         <!-- Button trigger modal -->
+      <section>
+        <h3 id="news-number"></h3>
+      </section>
 
 
-        <section id="news-container">
-            
-        </section>
+      <section id="news-container">
           
+      </section>
+        
           <!-- Modal -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -45,8 +48,17 @@
                 <div class="modal-header">
                   <h5 id="modal-title" id="exampleModalLongTitle"></h5>
                 </div>
+                <img id="modal-image" class="card-img-top" alt="Card image cap">
                 <div id="modal-details" class="modal-body">
                   ...
+                </div>
+                  <div class="d-flex">
+                    <div class="d-flex">
+                    <img id="author-image" width="30" height="30" class="d-inline-block">
+                    <p id="author-name"></p>
+                    </div> 
+                    <p id="views" class="p-2"></p>
+                </div>
                 </div>
               </div>
             </div>
