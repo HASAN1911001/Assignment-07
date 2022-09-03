@@ -1,24 +1,25 @@
+//Fetch categories
 fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(response => response.json())
     .then(json => json.data.news_category)
     .then(data => category(data))
+    .catch(error => console.log(error))
 
-function category(data)
-{
+const category= data => {
     const ul = document.getElementById('category');
 
-    for(const i in data)
-    {
+    for (const i in data) {
         const button = document.createElement('button');
 
-        button.innerText = data[i].category_name; 
+        button.innerText = data[i].category_name;
         button.setAttribute("id", data[i].category_id);
-        button.setAttribute("onclick", `displayNews('${data[i].category_id}')`)
+        button.setAttribute("onclick", `displayNews('${data[i].category_id}')`);
         ul.appendChild(button);
     }
 }
 
-function displayNews(category_id)
+//Display news
+const displayNews = category_id =>
 {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
 
@@ -26,9 +27,11 @@ function displayNews(category_id)
         .then(response => response.json())
         .then(json => json.data)
         .then(data => newsD(data))
+        .catch(err => console.log(err))
 }
 
-function newsD(news)
+//News setup
+const newsD = news =>
 {
     const newsContainer = document.getElementById("news-container");
     newsContainer.innerHTML = '';
@@ -69,7 +72,8 @@ function newsD(news)
     number.innerText= `${newsNumber} news found in this category`;
 }
 
-function detailsNews(news_id)
+//Function to open modal
+const detailsNews = news_id =>
 {
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
 
@@ -79,7 +83,8 @@ function detailsNews(news_id)
     
 }
 
-function modal(news)
+//Modal setup
+const modal = news =>
 {
     const modalTitle = document.getElementById("modal-title");
     modalTitle.innerText = news.title;
@@ -93,14 +98,21 @@ function modal(news)
     const authorImage = document.getElementById("author-image");
     authorImage.setAttribute("src", news.author.img);
 
+//Handle author nae and view count error
+    try{
     const authorName = document.getElementById("author-name");
     authorName.innerText = news.author.name;
 
-
     const view = document.getElementById("views");
     view.innerText = `Views: ${news.total_view}`;
+    }
+    catch(err){
+    const authorName = document.getElementById("author-name");
+    authorName.innerText = "Author";
 
-
+    const view = document.getElementById("views");
+    view.innerText = `Views: Not Given`;
+    }
 
 }
 
