@@ -46,7 +46,7 @@ function newsD(news)
             <div class="col-md-8">
                 <div class="card-body">
                 <h5 id ="title" class="card-title">${news[n].title}</h5>
-                <p id="text" class="card-text" style="white-space:nowrap;  overflow:hidden; text-overflow: ellipsis;">${news[n].details}.slice(0, 300)</p>
+                <p id="text" class="card-text" style="white-space:nowrap;  overflow:hidden; text-overflow: ellipsis;">${news[n].details}</p>
                 </div>
                 <div class="d-flex">
                     <div class="mr-auto p-2">
@@ -54,7 +54,7 @@ function newsD(news)
                     ${news[n].author.name}
                     </div> 
                     <p class="p-2">Views: ${news[n].total_view}</p>
-                    <button type="button" class="btn btn-primary" onclick=detailsNews('${news[n]._id}')>Primary</button>
+                    <button type="button" class="btn btn-primary" onclick="detailsNews('${news[n]._id}')" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Read</button>
 
                 </div>
             </div>
@@ -66,12 +66,24 @@ function newsD(news)
 
 function detailsNews(news_id)
 {
-    const url = `https://openapi.programming-hero.com/api/news/category/${news_id}`;
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
 
     fetch(url)
         .then(response => response.json())
-        .then(json => json.data)
-        .then(data => details(data))
+        .then(json => modal(json.data[0]))
+    
 }
+
+function modal(news)
+{
+    const modalTitle = document.getElementById("modal-title");
+    modalTitle.innerText = news.title;
+
+    const modalDetails = document.getElementById("modal-details");
+    modalDetails.innerText = news.details;
+}
+
+
+
 
 
