@@ -21,6 +21,8 @@ const category= data => {
 //Display news
 const displayNews = category_id =>
 {
+    toggleSpinner(true);//Start of Spinner.
+
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
 
     fetch(url)
@@ -29,6 +31,17 @@ const displayNews = category_id =>
         .then(data => newsD(data))
         .catch(err => console.log(err))
 }
+
+//Function to show spinner
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
+} 
 
 //News setup
 const newsD = news =>
@@ -65,11 +78,16 @@ const newsD = news =>
         `;
         newsContainer.appendChild(newsDiv);
     }
+//End of spinner
+toggleSpinner(false);
 
 //Displaying the number of news
     const newsNumber = document.getElementById('news-container').childElementCount;
     const number = document.getElementById('news-number');
-    number.innerText= `${newsNumber} news found in this category`;
+    if(newsNumber>0)
+        number.innerText= `${newsNumber} news found in this category`;
+    else 
+        number.innerText = "No news found!";
 }
 
 //Function to open modal
