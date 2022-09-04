@@ -18,6 +18,8 @@ const category= data => {
     }
 }
 
+
+
 //Display news
 const displayNews = category_id =>
 {
@@ -32,6 +34,8 @@ const displayNews = category_id =>
         .catch(err => console.log(err))
 }
 
+
+
 //Function to show spinner
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
@@ -42,6 +46,8 @@ const toggleSpinner = isLoading => {
         loaderSection.classList.add('d-none');
     }
 } 
+
+
 
 //News setup
 const newsD = news =>
@@ -90,6 +96,8 @@ toggleSpinner(false);
         number.innerText = "No news found!";
 }
 
+
+
 //Function to open modal
 const detailsNews = news_id =>
 {
@@ -100,6 +108,8 @@ const detailsNews = news_id =>
         .then(json => modal(json.data[0]))
     
 }
+
+
 
 //Modal setup
 const modal = news =>
